@@ -2,18 +2,19 @@ import React from 'react';
 
 export default class TodoBox extends React.Component {
     // Omitted
-    render(){
+    render() {
         return (
             <div className="todoBox">
                 <h1>Todos</h1>
-                <TodoList></TodoList>
-                <TodoForm></TodoForm>
+                <TodoList />
+                <TodoForm />
             </div>
         )
     }
 }
 
 class TodoList extends React.Component {
+    // Omitted
     render() {
         return (
             <div className="todoList">
@@ -25,14 +26,27 @@ class TodoList extends React.Component {
                     </tbody>
                 </table>
             </div>
-        );
+        )
     }
+
 }
 
 class Todo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {checked: false};
+    }
+
+    handleChange(event) {
+        this.setState({checked: !event.state.checked});
+    }
+
     render() {
         return (
             <tr>
+                <td style={{border: "1px solid black"}}>
+                    <input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this)}/>
+                </td>
                 <td style={{border: "1px solid black"}}>{this.props.title}</td>
                 <td style={{border: "1px solid black"}}>{this.props.children}</td>
             </tr>
@@ -45,11 +59,9 @@ Todo.propTypes = {
 
 class TodoForm extends React.Component {
     // Omitted
-    render(){
+    render() {
         return (
             <div className="todoForm">I am a TodoForm.</div>
         )
-
     }
-
 }
