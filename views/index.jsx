@@ -1,8 +1,8 @@
 import React from 'react';
-
+// let React =require('react');
 export default class TodoBox extends React.Component {
-    // Omitted
-    render() {
+// class TodoBox extends React.Component {
+    render(){
         return (
             <div className="todoBox">
                 <h1>Todos</h1>
@@ -12,13 +12,11 @@ export default class TodoBox extends React.Component {
         )
     }
 }
-
 class TodoList extends React.Component {
-    // Omitted
     render() {
         return (
             <div className="todoList">
-                <table style={{border: "2px solid black"}}>
+                <table style={style.todoList}>
                     <tbody>
                     <Todo title="Shopping">Milk</Todo>
                     <Todo title="Hair cut">13:00</Todo>
@@ -28,7 +26,6 @@ class TodoList extends React.Component {
             </div>
         )
     }
-
 }
 
 class Todo extends React.Component {
@@ -36,21 +33,19 @@ class Todo extends React.Component {
         super(props);
         this.state = {checked: false};
     }
-
-    handleChange(event) {
-        this.setState({checked: !event.state.checked});
+    handleChange(event){
+        this.setState({checked:!event.state.checked})
     }
-
     render() {
         return (
             <tr>
-                <td style={{border: "1px solid black"}}>
+                <td style={style.tableContent}>
                     <input type="checkbox" checked={this.state.checked} onChange={this.handleChange.bind(this)}/>
                 </td>
-                <td style={{border: "1px solid black"}}>{this.props.title}</td>
-                <td style={{border: "1px solid black"}}>{this.props.children}</td>
+                <td style={style.tableContent}>{this.props.title}</td>
+                <td style={style.tableContent}>{this.props.children}</td>
             </tr>
-        );
+        )
     }
 }
 Todo.propTypes = {
@@ -58,10 +53,21 @@ Todo.propTypes = {
 };
 
 class TodoForm extends React.Component {
-    // Omitted
     render() {
         return (
-            <div className="todoForm">I am a TodoForm.</div>
+            <div className="todoForm">
+                I am a TodoForm.
+            </div>
         )
     }
 }
+
+let style = {
+    tableContent: {
+        border: "1px solid black"
+    },
+    todoList: {
+        border: "2px solid black"
+    }
+};
+// module.exports=TodoBox;
